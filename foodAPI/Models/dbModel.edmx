@@ -1,0 +1,369 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="dbFoodModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="catId" />
+          </Key>
+          <Property Name="catId" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="catName" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="catTOsub">
+          <Key>
+            <PropertyRef Name="cad2subId" />
+          </Key>
+          <Property Name="cad2subId" Type="int" Nullable="false" />
+          <Property Name="cadId" Type="nvarchar" MaxLength="255" />
+          <Property Name="subCatId" Type="int" />
+        </EntityType>
+        <EntityType Name="detail">
+          <Key>
+            <PropertyRef Name="detailId" />
+          </Key>
+          <Property Name="detailId" Type="int" Nullable="false" />
+          <Property Name="orderId" Type="nvarchar" MaxLength="255" />
+          <Property Name="menuId" Type="nvarchar" MaxLength="255" />
+          <Property Name="menuName" Type="nvarchar" MaxLength="255" />
+          <Property Name="price" Type="int" />
+          <Property Name="subPrice" Type="int" />
+          <Property Name="qty" Type="int" />
+          <Property Name="remark" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="detailSubjoin">
+          <Key>
+            <PropertyRef Name="dsId" />
+          </Key>
+          <Property Name="dsId" Type="int" Nullable="false" />
+          <Property Name="detailId" Type="int" />
+          <Property Name="subId" Type="int" />
+        </EntityType>
+        <EntityType Name="menu">
+          <Key>
+            <PropertyRef Name="menuId" />
+          </Key>
+          <Property Name="menuId" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="catId" Type="nvarchar" MaxLength="255" />
+          <Property Name="menuNameEn" Type="nvarchar" MaxLength="255" />
+          <Property Name="menuName" Type="nvarchar" MaxLength="255" />
+          <Property Name="comment" Type="nvarchar" MaxLength="255" />
+          <Property Name="price" Type="int" />
+          <Property Name="img" Type="nvarchar" MaxLength="255" />
+          <Property Name="isSoldOut" Type="bit" />
+        </EntityType>
+        <EntityType Name="menuSubjoinList">
+          <Key>
+            <PropertyRef Name="menuSubListId" />
+          </Key>
+          <Property Name="menuSubListId" Type="int" Nullable="false" />
+          <Property Name="menuId" Type="nvarchar" MaxLength="255" />
+          <Property Name="subCatId" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="order">
+          <Key>
+            <PropertyRef Name="orderId" />
+          </Key>
+          <Property Name="orderId" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="userId" Type="int" />
+          <Property Name="userName" Type="nvarchar" MaxLength="255" />
+          <Property Name="totalPrice" Type="int" />
+          <Property Name="dateTime" Type="datetime" />
+          <Property Name="takeAway" Type="bit" />
+          <Property Name="isDone" Type="bit" />
+          <Property Name="remark" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="subCategory">
+          <Key>
+            <PropertyRef Name="subCatId" />
+          </Key>
+          <Property Name="subCatId" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="subCatName" Type="nvarchar" MaxLength="255" />
+          <Property Name="isMulti" Type="bit" />
+        </EntityType>
+        <EntityType Name="subjoin">
+          <Key>
+            <PropertyRef Name="subId" />
+          </Key>
+          <Property Name="subId" Type="int" Nullable="false" />
+          <Property Name="subCatId" Type="nvarchar" MaxLength="255" />
+          <Property Name="subName" Type="nvarchar" MaxLength="255" />
+          <Property Name="subPrice" Type="int" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="userName" Type="nvarchar" MaxLength="255" />
+          <Property Name="password" Type="nvarchar" MaxLength="255" />
+          <Property Name="phone" Type="nvarchar" MaxLength="255" />
+          <Property Name="email" Type="nvarchar" MaxLength="255" />
+          <Property Name="role" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityContainer Name="dbFoodModelStoreContainer">
+          <EntitySet Name="category" EntityType="Self.category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="catTOsub" EntityType="Self.catTOsub" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="detail" EntityType="Self.detail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="detailSubjoin" EntityType="Self.detailSubjoin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="menu" EntityType="Self.menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="menuSubjoinList" EntityType="Self.menuSubjoinList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="order" EntityType="Self.order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="subCategory" EntityType="Self.subCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="subjoin" EntityType="Self.subjoin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbFoodModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="dbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="category" EntityType="dbFoodModel.category" />
+          <EntitySet Name="catTOsub" EntityType="dbFoodModel.catTOsub" />
+          <EntitySet Name="detail" EntityType="dbFoodModel.detail" />
+          <EntitySet Name="detailSubjoin" EntityType="dbFoodModel.detailSubjoin" />
+          <EntitySet Name="menu" EntityType="dbFoodModel.menu" />
+          <EntitySet Name="menuSubjoinList" EntityType="dbFoodModel.menuSubjoinList" />
+          <EntitySet Name="order" EntityType="dbFoodModel.order" />
+          <EntitySet Name="subCategory" EntityType="dbFoodModel.subCategory" />
+          <EntitySet Name="subjoin" EntityType="dbFoodModel.subjoin" />
+          <EntitySet Name="users" EntityType="dbFoodModel.users" />
+        </EntityContainer>
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="catId" />
+          </Key>
+          <Property Name="catId" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="catName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="catTOsub">
+          <Key>
+            <PropertyRef Name="cad2subId" />
+          </Key>
+          <Property Name="cad2subId" Type="Int32" Nullable="false" />
+          <Property Name="cadId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="subCatId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="detail">
+          <Key>
+            <PropertyRef Name="detailId" />
+          </Key>
+          <Property Name="detailId" Type="Int32" Nullable="false" />
+          <Property Name="orderId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="menuId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="menuName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="Int32" />
+          <Property Name="subPrice" Type="Int32" />
+          <Property Name="qty" Type="Int32" />
+          <Property Name="remark" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="detailSubjoin">
+          <Key>
+            <PropertyRef Name="dsId" />
+          </Key>
+          <Property Name="dsId" Type="Int32" Nullable="false" />
+          <Property Name="detailId" Type="Int32" />
+          <Property Name="subId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="menu">
+          <Key>
+            <PropertyRef Name="menuId" />
+          </Key>
+          <Property Name="menuId" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="catId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="menuNameEn" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="menuName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="comment" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="Int32" />
+          <Property Name="img" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="isSoldOut" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="menuSubjoinList">
+          <Key>
+            <PropertyRef Name="menuSubListId" />
+          </Key>
+          <Property Name="menuSubListId" Type="Int32" Nullable="false" />
+          <Property Name="menuId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="subCatId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="order">
+          <Key>
+            <PropertyRef Name="orderId" />
+          </Key>
+          <Property Name="orderId" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="userId" Type="Int32" />
+          <Property Name="userName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="totalPrice" Type="Int32" />
+          <Property Name="dateTime" Type="DateTime" Precision="3" />
+          <Property Name="takeAway" Type="Boolean" />
+          <Property Name="isDone" Type="Boolean" />
+          <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="subCategory">
+          <Key>
+            <PropertyRef Name="subCatId" />
+          </Key>
+          <Property Name="subCatId" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="subCatName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="isMulti" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="subjoin">
+          <Key>
+            <PropertyRef Name="subId" />
+          </Key>
+          <Property Name="subId" Type="Int32" Nullable="false" />
+          <Property Name="subCatId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="subName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="subPrice" Type="Int32" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="userName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="role" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbFoodModelStoreContainer" CdmEntityContainer="dbEntities">
+          <EntitySetMapping Name="category">
+            <EntityTypeMapping TypeName="dbFoodModel.category">
+              <MappingFragment StoreEntitySet="category">
+                <ScalarProperty Name="catName" ColumnName="catName" />
+                <ScalarProperty Name="catId" ColumnName="catId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="catTOsub">
+            <EntityTypeMapping TypeName="dbFoodModel.catTOsub">
+              <MappingFragment StoreEntitySet="catTOsub">
+                <ScalarProperty Name="subCatId" ColumnName="subCatId" />
+                <ScalarProperty Name="cadId" ColumnName="cadId" />
+                <ScalarProperty Name="cad2subId" ColumnName="cad2subId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="detail">
+            <EntityTypeMapping TypeName="dbFoodModel.detail">
+              <MappingFragment StoreEntitySet="detail">
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="subPrice" ColumnName="subPrice" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="menuName" ColumnName="menuName" />
+                <ScalarProperty Name="menuId" ColumnName="menuId" />
+                <ScalarProperty Name="orderId" ColumnName="orderId" />
+                <ScalarProperty Name="detailId" ColumnName="detailId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="detailSubjoin">
+            <EntityTypeMapping TypeName="dbFoodModel.detailSubjoin">
+              <MappingFragment StoreEntitySet="detailSubjoin">
+                <ScalarProperty Name="subId" ColumnName="subId" />
+                <ScalarProperty Name="detailId" ColumnName="detailId" />
+                <ScalarProperty Name="dsId" ColumnName="dsId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="menu">
+            <EntityTypeMapping TypeName="dbFoodModel.menu">
+              <MappingFragment StoreEntitySet="menu">
+                <ScalarProperty Name="isSoldOut" ColumnName="isSoldOut" />
+                <ScalarProperty Name="img" ColumnName="img" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="menuName" ColumnName="menuName" />
+                <ScalarProperty Name="menuNameEn" ColumnName="menuNameEn" />
+                <ScalarProperty Name="catId" ColumnName="catId" />
+                <ScalarProperty Name="menuId" ColumnName="menuId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="menuSubjoinList">
+            <EntityTypeMapping TypeName="dbFoodModel.menuSubjoinList">
+              <MappingFragment StoreEntitySet="menuSubjoinList">
+                <ScalarProperty Name="subCatId" ColumnName="subCatId" />
+                <ScalarProperty Name="menuId" ColumnName="menuId" />
+                <ScalarProperty Name="menuSubListId" ColumnName="menuSubListId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="order">
+            <EntityTypeMapping TypeName="dbFoodModel.order">
+              <MappingFragment StoreEntitySet="order">
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="isDone" ColumnName="isDone" />
+                <ScalarProperty Name="takeAway" ColumnName="takeAway" />
+                <ScalarProperty Name="dateTime" ColumnName="dateTime" />
+                <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="orderId" ColumnName="orderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="subCategory">
+            <EntityTypeMapping TypeName="dbFoodModel.subCategory">
+              <MappingFragment StoreEntitySet="subCategory">
+                <ScalarProperty Name="isMulti" ColumnName="isMulti" />
+                <ScalarProperty Name="subCatName" ColumnName="subCatName" />
+                <ScalarProperty Name="subCatId" ColumnName="subCatId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="subjoin">
+            <EntityTypeMapping TypeName="dbFoodModel.subjoin">
+              <MappingFragment StoreEntitySet="subjoin">
+                <ScalarProperty Name="subPrice" ColumnName="subPrice" />
+                <ScalarProperty Name="subName" ColumnName="subName" />
+                <ScalarProperty Name="subCatId" ColumnName="subCatId" />
+                <ScalarProperty Name="subId" ColumnName="subId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="dbFoodModel.users">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

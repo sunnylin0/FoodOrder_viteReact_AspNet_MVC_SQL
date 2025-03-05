@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ffdeda18aab44d958994d45844a5f2ce" Name="Diagram1">
+        <EntityTypeShape EntityType="dbFoodModel.category" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="dbFoodModel.catTOsub" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="dbFoodModel.detail" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="dbFoodModel.detailSubjoin" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="dbFoodModel.menu" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="dbFoodModel.menuSubjoinList" Width="1.5" PointX="4.75" PointY="4.75" />
+        <EntityTypeShape EntityType="dbFoodModel.order" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="dbFoodModel.subCategory" Width="1.5" PointX="6.75" PointY="4.75" />
+        <EntityTypeShape EntityType="dbFoodModel.subjoin" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="dbFoodModel.users" Width="1.5" PointX="2.75" PointY="7.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

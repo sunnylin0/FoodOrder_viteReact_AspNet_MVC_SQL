@@ -1,0 +1,119 @@
+﻿/*版面邊界設定*/
+.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+}
+/*卡片小畫面*/
+.card-size-small {
+    max-width: 576px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin: auto;
+}
+/*卡片中畫面*/
+.card-size-medium {
+    max-width: 768px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin: auto;
+}
+/*卡片大畫面*/
+.card-size-large {
+    max-width: 992px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin: auto;
+}
+/*卡片滿版畫面*/
+.card-size-max {
+    max-width: 100%;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin: auto;
+}
+/*頁數資訊*/
+.page-info {
+    padding-top: 18px;
+    font-size: large;
+    font-weight: bold;
+}
+/*Table Th 不折行置中且粗體*/
+.table th {
+    font-weight: bold;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+/*Table Th 不折行置中*/
+.table td {
+    vertical-align: middle;
+    white-space: nowrap;
+}
+/*Table 找最後一欄位折行*/
+.table-wrap {
+    width: 100%;
+}
+/*寛度 24 , 高度等比例*/
+.width-size-24 {
+    width: 24px;
+}
+/*寛度 48 , 高度等比例*/
+.width-size-48 {
+    width: 48px;
+}
+/*寛度 64 , 高度等比例*/
+.width-size-64 {
+    width: 64px;
+}
+/*寛度 128 , 高度等比例*/
+.width-size-128 {
+    width: 128px;
+}
+/*寛度 256 , 高度等比例*/
+.width-size-256 {
+    width: 256px;
+}
+/*寛度 512 , 高度等比例*/
+.width-size-512 {
+    width: 512px;
+}
+/* 上方選單多層式選單設計 */
+.topmenu-arraw {
+    font-size: xx-small;
+    margin-left: 10px;
+    float: right;
+    padding-top: 6px;
+}
+
+@media all and (min-width: 992px) {
+    .dropdown-menu li {
+        position: relative;
+    }
+
+    .nav-item .submenu {
+        display: none;
+        position: absolute;
+        right: 100%;
+        top: -7px;
+    }
+
+    .nav-item .submenu-left {
+        right: 100%;
+        left: auto;
+    }
+
+    .dropdown-menu > li:hover {
+        background-color: #f1f1f1
+    }
+
+        .dropdown-menu > li:hover > .submenu {
+            display: block;
+        }
+}
+
+@media (max-width: 991px) {
+    .dropdown-menu .dropdown-menu {
+        margin-left: 0.7rem;
+        margin-right: 0.7rem;
+        margin-bottom: .5rem;
+    }
+}
