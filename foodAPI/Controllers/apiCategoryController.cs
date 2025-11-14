@@ -158,6 +158,48 @@ namespace foodAPI.Controllers
 		}
 
 		/// <summary>
+		/// 取得指定使用者的歷史訂單
+		/// </summary>
+		/// <param name="userId">使用者ID</param>
+		/// <returns></returns>
+		[HttpGet]
+		[EnableCors(origins: "*", headers: "*", methods: "*")]
+		[Route("orders")] // 這裡使用與前端 axios.get(`${urlDomain}/orders?userId=${userId}`) 匹配的路由
+		public IHttpActionResult getUserOrders([FromUri] string userId)
+		{
+			// 檢查 userId 是否為空或 null
+			if (string.IsNullOrEmpty(userId))
+			{
+				return Content(HttpStatusCode.BadRequest, new { error = "User ID is required." });
+			}
+
+			try
+			{
+				using (z_repoorder orders = new z_repoorder())
+				{
+					// 假設 z_repoorder 裡面有一個方法 GetOrdersByUserId(string userId)
+					// 用來查詢特定使用者的所有訂單
+					var userOrders = orders.GetOrdersByUserId(userId);
+
+					// 如果查不到資料，也可以返回 Ok(new List<order>()) 或 NotFound()
+					if (userOrders == null || !userOrders.Any())
+					{
+						// 這裡返回 OK with empty list 讓前端可以順利處理沒有訂單的情況
+						return Ok(new List<order>());
+					}
+
+					return Ok(userOrders);
+				}
+			}
+			catch (Exception ex)
+			{
+				// 處理異常
+				return Content(HttpStatusCode.InternalServerError, new { error = $"Error retrieving user orders: {ex.Message}" });
+			}
+		}
+
+
+		/// <summary>
 		/// 更新產品資料
 		/// </summary>
 		/// <param name="menuId"></param>

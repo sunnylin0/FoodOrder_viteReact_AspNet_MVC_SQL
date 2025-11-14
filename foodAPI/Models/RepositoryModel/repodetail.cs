@@ -201,6 +201,34 @@ detailId, orderId, menuId, menuName, price
 		}
 		return true;
 	}
+
+
+	/// <summary>
+	/// 取得指定訂單明細 (detailId) 的加購項 (subjoin)
+	/// </summary>
+	/// <param name="detailId">訂單明細 ID</param>
+	/// <returns></returns>
+	public List<subjoin> GetOrderDetailSubjoinList(string detailId)
+	{
+		using (DapperRepository dp = new DapperRepository())
+		{
+			// 這是對應您 JS 程式碼中的 SQL 邏輯
+			string str_query = @"
+            SELECT T1.subId, T1.subCatId, T1.subName, T1.subPrice
+            FROM subjoin AS T1 
+            INNER JOIN detailSubjoin AS T2 ON T1.subId = T2.subId
+            WHERE T2.detailId = @detailId";
+
+			DynamicParameters parameters = new DynamicParameters();
+			parameters.Add("detailId", detailId);
+
+			// 假設您有一個名為 subjoin 的 Model
+			var subjoinList = dp.ReadAll<subjoin>(str_query, parameters).ToList();
+
+			return subjoinList;
+		}
+	}
+
 	#endregion
 
 
